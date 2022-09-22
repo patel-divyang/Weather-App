@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App | Tailwind & Javascript & WeatherAPI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-128.png" sizes="128x128" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Divyang Patel" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="./favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="./favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="./favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="./favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="./favicon/mstile-310x310.png" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'Helvetica', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="">
+    <div class="px-10 min-h-screen bg-purple-50 flex justify-center items-center font-inter weather-app text-white">
+        <!-- PHONE -->
+        <div
+            class="relative h-[712px] w-[350px] rounded-[50px] bg-gradient-to-br from-blue-500 to-red-500 shadow-md overflow-hidden border-[15px] border-black background-bg">
+            <!-- NOTCH -->
+            <div class="absolute top-0 inset-x-0">
+                <div class="h-6 w-40 mx-auto bg-black rounded-b-3xl"></div>
+            </div>
+            <!-- RELATIVE -->
+            <div class="relative">
+                <!-- TRAY ICONS -->
+                <div class="mt-2 mr-5 flex justify-end space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+                </div>
+                <!-- CITY SEARCH -->
+                <div class="city-search mt-5 flex flex-end grid justify-items-center ">
+                    <!-- FORM -->
+                    <form id="form" class="form flex flex-row" autocomplete="off">
+                        <!-- INPUT -->
+                        <!-- <input type="text" id="search" placeholder=" Search Location"
+                            class="search bg-transparent px-2 py-0.5  border-gray-100/20 focus:outline-none  autofill:!bg-transparent"> -->
+                        <input type="text" id="search" placeholder="Search Location"
+                            class="search bg-transparent px-2 py-0.5 border-b-2 border-gray-100/20 placeholder:text-gray-100 focus:placeholder:text-transparent focus:text-white focus:outline-none caret-white autofill:!bg-transparent">
+                        <!-- END OF INPUT -->
+                        <!-- BUTTON -->
+                        <button type="submit" class="submit ml-2" id="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 font-bold" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- END OF BUTTON -->
+                    </form>
+                    <!-- END OF FORM -->
+                </div>
+                <!-- CITY CURRENT WITH FORECAST DETAIL-->
+                <div class="city-current mt-5 grid grid-cols-2 gap-2 ">
+                    <div class="flex flex-col ml-4 ">
+                        <p class="ml-4 city-name text-xl font-semibold tracking-tight"></p>
+                        <div class="city-details flex flex-col ml-4 font-light text-md">
+                            <span class="city-date font-medium">Jan 5 2011</span>
+                        </div>
+                    </div>
+                    <div
+                        class="whitespace-nowrap forecast-detail text-xl place-self-end font-semibold mr-10 mb-10 tracking-tight">
+                    </div>
+                </div>
+
+                <!-- TEMPERATURE -->
+                <div class="temperature  text-center place-self-center mt-5 ">
+                    <div class="temp-value text-7xl tracking-tighter"></div>
+                </div>
+
+
+            </div>
+            <!-- CURRENT DETAILS -->
+            <div
+                class="weather-currently mt-20 rounded-b-3xl rounded-t-2xl bg-white/50 backdrop-blur-sm w-full h-56 absolute bottom-0 p-4">
+                <div class="font-base text-md font-bold ">Weather Currently</div>
+                <div class="mt-5 ml-2 grid grid-cols-2 gap-1">
+                    <div class="flex flex-row ">
+                        <img src="./assets/icons/day/thermometer.svg" alt=""
+                            class="-ml-3 mt-1 w-8 h-8 bg-white rounded-full p-1">
+                        <div class="detail-container flex flex-col ml-2">
+                            <span class="detail-title text-xs">Feels Like</span>
+                            <span class="detail-temp text-md"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-row ">
+                        <img src="./assets/icons/day/swap-horizontal.svg" alt=""
+                            class="ml-3 mt-1 w-8 h-8 bg-white rounded-full p-1">
+                        <div class="detail-container flex flex-col ml-2">
+                            <span class="detail-title text-xs">Wind</span>
+                            <span class="detail-wind text-md"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 ml-2 grid grid-cols-2 gap-1">
+                    <div class="flex flex-row ">
+                        <img src="./assets/icons/day/umbrella.svg" alt=""
+                            class="-ml-3 mt-1 w-8 h-8 bg-white rounded-full p-1">
+                        <div class="detail-container flex flex-col ml-2">
+                            <span class="detail-title text-xs">Precipitation</span>
+                            <span class="detail-prep text-md"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-row ">
+                        <img src="./assets/icons/day/drop.svg" alt=""
+                            class="ml-3 mt-1 w-8 h-8 bg-white rounded-full p-1">
+                        <div class="detail-container flex flex-col ml-2">
+                            <span class="detail-title text-xs">Humidity</span>
+                            <span class="detail-humidity text-md"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
