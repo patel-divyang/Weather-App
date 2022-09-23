@@ -69,7 +69,7 @@
                     </svg>
                 </div>
                 <!-- CITY SEARCH -->
-                <div class="city-search mt-5 flex flex-end grid justify-items-center ">
+                <div class="city-search mt-5 flex-end grid justify-items-center ">
                     <!-- FORM -->
                     <form id="form" class="form flex flex-row" autocomplete="off">
                         <!-- INPUT -->
@@ -96,19 +96,25 @@
                     <div class="flex flex-col ml-4 ">
                         <p class="ml-4 city-name text-xl font-semibold tracking-tight"></p>
                         <div class="city-details flex flex-col ml-4 font-light text-md">
-                            <span class="city-date font-medium">Jan 5 2011</span>
+                            <span class="city-date font-medium whitespace-nowrap no-wrap">Jan 5 2011</span>
                         </div>
                     </div>
                     <div
-                        class="whitespace-nowrap forecast-detail text-xl place-self-end font-semibold mr-10 mb-10 tracking-tight">
+                        class="whitespace-nowrap forecast-details text-xl place-self-end font-semibold mr-10 mb-16 tracking-tight">
                     </div>
                 </div>
 
+
+                <!-- FORECAST DETAIL -->
+                <div class="city-current mx-auto">
+                    <div class="forecast-detail text-xl place-self-end font-semibold tracking-tight text-center mt-8">
+                        Sunny
+                    </div>
+                </div>
                 <!-- TEMPERATURE -->
                 <div class="temperature  text-center place-self-center mt-5 ">
-                    <div class="temp-value text-7xl tracking-tighter"></div>
+                    <div class="temp-value font-medium text-7xl tracking-tighter"></div>
                 </div>
-
 
             </div>
             <!-- CURRENT DETAILS -->
